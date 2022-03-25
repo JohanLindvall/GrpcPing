@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Tracing;
+using System.Diagnostics.Tracing;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -27,7 +27,9 @@ while (true)
     {
         Service = "live"
     }).ResponseAsync));
-    await Task.Delay(TimeSpan.FromMilliseconds(45000 + RandomNumberGenerator.GetInt32(120000)));
+    var delay = Math.Pow(RandomNumberGenerator.GetInt32((int) 1E9) / 1E9, 2) * 1200000;
+    Log.Debug("Sleeping {Sleep} ms ", delay);
+    await Task.Delay(TimeSpan.FromMilliseconds(delay));
 }
 
 internal sealed class EventSourceListener : EventListener
