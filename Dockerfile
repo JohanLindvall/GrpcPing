@@ -3,8 +3,8 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["HttpPing.csproj", "./"]
-RUN dotnet restore "HttpPing.csproj"
+COPY ["GrpcPing.csproj", "./"]
+RUN dotnet restore "GrpcPing.csproj"
 COPY . .
 WORKDIR "/src/"
 RUN dotnet build "GrpcPing.csproj" -c Release -o /app/build
